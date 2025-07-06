@@ -14,9 +14,6 @@ using namespace std;
 
 int minpath(vector<vector<int>>&grid) {
     int n = grid.size();
-    // vector<vector<int>>memo(m, vector<int>(m,-1));
-    // return f(0,0, grid, memo);
-
     vector<int> front(n ,0);
 
     for(int j = 0; j < n; j++)front[j] = grid[n-1][j];
