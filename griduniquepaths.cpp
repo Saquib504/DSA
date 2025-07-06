@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+/*Below i have written soluton to a single problem in multiple ways*/
+
 //Recursion + Memoization
 // int f(int i, int j, vector<vector<int>>&memo) {
 //     if( i == 0 && j == 0){
