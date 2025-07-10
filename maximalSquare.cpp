@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 
@@ -83,7 +84,6 @@ int getMaxSquare(vector<vector<int>>&grid) {
 
 int main() {
     vector<vector<int>>grid = {{1,0,1,0,0},{1,0,1,1,1},{1,1,1,1,1},{1,0,0,1,0}};
-
     cout << getMaxSquare(grid) << endl;
     return 0;
 }
