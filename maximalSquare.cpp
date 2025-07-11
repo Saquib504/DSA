@@ -59,7 +59,7 @@ int getMaxSquare(vector<vector<int>>&grid) {
     //     }
     // }
 
-    //Optimized version
+    //Optimized version. --->  TC = O(M*N), SC.  ---> O(N)
     vector<int>prev(n,0);
     for(int j = 0; j < n; j++) {
         prev[j] = grid[0][j];
