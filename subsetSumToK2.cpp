@@ -74,27 +74,19 @@ using namespace std;
 
 //Space Optimization
 
-bool subsetSumToK2(vector<int> &arr) {
-    int n = arr.size();
-
-    int totalSum = 0;
-    for(int i = 0; i < n; i++)totalSum += arr[i];
-
-    if(totalSum % 2) return false;
-
-    
-    vector<bool>prev(totalSum+1, false);
+bool func(int n, vector<int>&arr, int target) {
+    vector<bool>prev(target+1, false);
     //Base Case-1:
     prev[0] = true;
 
     //Base Case-2:
-    if(arr[0] <= totalSum) prev[arr[0]] = true;
+    if(arr[0] <= target) prev[arr[0]] = true;
 
     for(int i = 1; i < n; i++) {
-        vector<bool>temp(totalSum+1, false);
+        vector<bool>temp(target+1, false);
         temp[0] = true;
 
-        for(int j = 1; j <= totalSum; j++) {
+        for(int j = 1; j <= target; j++) {
             bool notTaken = prev[j];
 
             bool taken = false;
@@ -107,7 +99,18 @@ bool subsetSumToK2(vector<int> &arr) {
         prev = temp;
     }
 
-    return prev[totalSum];
+    return prev[target];
+}
+
+bool subsetSumToK2(vector<int> &arr) {
+    int n = arr.size();
+
+    int totalSum = 0;
+    for(int i = 0; i < n; i++)totalSum += arr[i];
+
+    if(totalSum % 2) return false;
+
+    return func(n, arr, totalSum/2);
 }
 
 int main() {
