@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+// this is a solution where we haven't taken 0's in out array.
+
 // R E C U R S I O N + M E M O I Z A T I O N
 // int f(int index, int target, vector<int>&arr, vector<vector<int>>&memo) {
 //     if(target == 0) return 1;
