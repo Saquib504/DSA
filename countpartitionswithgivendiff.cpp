@@ -83,8 +83,8 @@ int countSubsequence(vector<int>&arr, int D) {
 
 int main() {
 
-    vector<int> arr = {1,1,1,1};
-    int D = 0;
+    vector<int> arr = {1,1,1,1,1};
+    int D = 3;
 
     cout << "The no. of partitions with difference " << D << " is : " << countSubsequence(arr, D) << endl;
     return 0;
