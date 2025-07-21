@@ -2,6 +2,8 @@
 using namespace std;
 
 // BRUTE FORCE METHOD
+// T.C -> O(NlogN + MlogM)
+// S.C -> O(1)
 
 int assignCookies(vector<int>&children, vector<int>&cookies) {
     int n = children.size(), m = cookies.size();
