@@ -37,7 +37,7 @@ using namespace std;
 // }
 
 // SPACE OPTIMIZATION
-int longestPalindrome(string& s1, string&s2) {
+int longestPalindrome(string& s1) {
     int n = s1.size();
 
     vector<int>prev(n+1, 0);
@@ -46,7 +46,7 @@ int longestPalindrome(string& s1, string&s2) {
         vector<int>temp(n+1, 0);
         for(int j = 1; j <= n; j++) {
 
-            if(s1[i-1] == s2[j-1]) {
+            if(s1[i-1] == s1[n-j]) {
                 temp[j] = 1 + prev[j-1];
             }
             else {
@@ -63,12 +63,12 @@ int longestPalindrome(string& s1, string&s2) {
 int main() {
     string str1; cout << "Enter : ";cin >> str1;
     int n = str1.length();
-    string str2;
+    // string str2;
 
-    for(int i = n-1; i >= 0; i--) {
-        str2 += str1[i];
-    }
+    // for(int i = n-1; i >= 0; i--) {
+    //     str2 += str1[i];
+    // }
 
-    cout << "The longest palindromic subsequence is " << longestPalindrome(str1, str2) << endl;
+    cout << "The longest palindromic subsequence is " << longestPalindrome(str1) << endl;
     return 0;
 }
