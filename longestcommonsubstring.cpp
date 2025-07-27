@@ -19,8 +19,6 @@ string findLCS(string&s1, string&s2) {
             }
         }
     }
-
-    int index = memo[row][col]-1;
     string ans = s1.substr(row - maxSize, maxSize);
     return ans;
 }
