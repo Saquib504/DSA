@@ -2,20 +2,24 @@
 using namespace std;
 
 // RECURSINO + MEMOIZATION
-int f(int i, int j, string &s1, string &s2, vector<vector<int>>&memo) {
-    if(i < 0) return j+1;
-    if(j < 0) return i+1;
+// TC -> O(NxM)
+// SC -> (NxM) + O(N+M)
+// int f(int i, int j, string &s1, string &s2, vector<vector<int>>&memo) {
+//     if(i < 0) return j+1;
+//     if(j < 0) return i+1;
 
-    if(memo[i][j] != -1) return memo[i][j];
+//     if(memo[i][j] != -1) return memo[i][j];
 
-    if(s1[i] == s2[j]) {
-        return 0 + f(i-1, j-1,s1,s2,memo);
-    }
+//     if(s1[i] == s2[j]) {
+//         return 0 + f(i-1, j-1,s1,s2,memo);
+//     }
 
-    return memo[i][j] = min(1 + f(i-1,j,s1,s2,memo), min(1+f(i,j-1,s1,s2,memo), 1+f(i-1,j-1,s1,s2,memo)));
-}
+//     return memo[i][j] = min(1 + f(i-1,j,s1,s2,memo), min(1+f(i,j-1,s1,s2,memo), 1+f(i-1,j-1,s1,s2,memo)));
+// }
 
 // TABULATION METHOD
+// TC -> O(NxM)
+// SC -> (NxM)
 // int editDistance(string&s1, string&s2) {
 //     int n = s1.size();
 //     int m = s2.size();
@@ -45,6 +49,8 @@ int f(int i, int j, string &s1, string &s2, vector<vector<int>>&memo) {
 
 
 // SPACE OPTIMIZATION
+// TC -> O(NxM)
+// SC -> (M)
 int editDistance(string&s1, string&s2) {
     int n = s1.size();
     int m = s2.size();
