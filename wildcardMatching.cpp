@@ -78,7 +78,7 @@ bool wildcard(string&s1, string &s2) {
     for(int i = 1; i <= n; i++) {
         vector<int>temp(m+1, 0);int flag = true;
         for(int ii = 1; ii <= i; ii++) {
-            if(s1[ii] != '*') {
+            if(s1[ii-1] != '*') {
                 flag = false;
                 break;
             }
