@@ -43,27 +43,49 @@ int f(int i, int prevInd, vector<int>&arr, vector<vector<int>>&memo) {
 // }
 
 // SPACE OPTIMIZATION
-int LIS(vector<int>&arr) {
-    int n = arr.size();
+// int LIS(vector<int>&arr) {
+//     int n = arr.size();
 
-    vector<int>prev(n+1, 0), curr(n+1, 0);
+//     vector<int>prev(n+1, 0), curr(n+1, 0);
 
-    for(int i = n-1; i >= 0; i--) {
-        for(int prevInd = i-1; prevInd >= -1; prevInd--) {
+//     for(int i = n-1; i >= 0; i--) {
+//         for(int prevInd = i-1; prevInd >= -1; prevInd--) {
 
-            int notTake = prev[prevInd+1];
-            int take = 0;
+//             int notTake = prev[prevInd+1];
+//             int take = 0;
 
-            if(prevInd == -1 || arr[i] > arr[prevInd]) {
-                take = 1 + prev[i+1];
-            }
+//             if(prevInd == -1 || arr[i] > arr[prevInd]) {
+//                 take = 1 + prev[i+1];
+//             }
 
-            curr[prevInd+1] = max(notTake,take);
+//             curr[prevInd+1] = max(notTake,take);
+//         }
+//         prev = curr;
+//     }
+//     return prev[0];
+// }
+
+
+// SPACE OPTIMIZATION - 2
+// TC = O(NLOGN)
+// SC = O(N)
+
+int LIS(vector<int>& nums) {
+    //binary search
+    vector<int> tails;
+
+    for (int num : nums) {
+        auto it = lower_bound(tails.begin(), tails.end(), num);
+        if (it == tails.end()) {
+            tails.push_back(num);
+        } else {
+            *it = num;
         }
-        prev = curr;
     }
-    return prev[0];
+    return tails.size();
 }
+
+
 
 int main() {
 
