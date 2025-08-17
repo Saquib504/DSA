@@ -58,3 +58,5 @@ int main() {
 
     return 0;
 }
+
+//there is a solution to this problem that solve it in tiem complxity of O(NlogN)
