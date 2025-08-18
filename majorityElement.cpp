@@ -1,38 +1,66 @@
 #include <iostream>
 using namespace std;
 
-int majorElement(vector<int>&votes) {
-    int n = votes.size();
-    int count  = 0;
-    int candid = votes[0];
+// BETTER APPROACH
+// TC -> O(N)
+// SC -> O(1)
+// int majorElement(vector<int>&votes) {
+//     int n = votes.size();
+//     int count  = 0;
+//     int candid = votes[0];
 
-    for(int i = 1; i < n; i++) {
-        //if got the some candid
-        if(votes[i] == candid) {
+//     for(int i = 1; i < n; i++) {
+//         //if got the some candid
+//         if(votes[i] == candid) {
+//             count++;
+//         }
+
+//         //if candid are diffrent
+//         else if(votes[i] != candid) {
+//             count--;
+//         }
+//         if(count == 0) {
+//             candid = votes[i];
+//             count = 1;
+//         }
+//     }
+
+//     count = 0;
+//     for(int i = 0; i < n; i++) {
+//         if(votes[i] == candid) count++;
+//     }
+
+//     if(count > n/2) {
+//         return candid;
+//     }
+//     return -1;
+    
+// }
+
+
+// OPTIMAL APPROACH
+// TC -> O(1)
+// SC -> O(1)
+int majorElement(vector<int>&votes) {
+    int count = 0;
+    int candid = -1;
+
+    for(auto &person : votes) {
+        if(count == 0) {
+            candid = person;
+        }
+
+        else if(person == candid) {
             count++;
         }
-
-        //if candid are diffrent
-        else if(votes[i] != candid) {
+        else {
             count--;
         }
-        if(count == 0) {
-            candid = votes[i];
-            count = 1;
-        }
     }
 
-    count = 0;
-    for(int i = 0; i < n; i++) {
-        if(votes[i] == candid) count++;
-    }
-
-    if(count > n/2) {
-        return candid;
-    }
-    return -1;
-    
+    return candid;
 }
+
 
 int main() {
 
