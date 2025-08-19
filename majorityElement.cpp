@@ -61,7 +61,7 @@ int majorElement(vector<int>&votes) {
     return candid;
 }
 
-
+//yes this is a good way to keep your streak keep going on 
 int main() {
 
     vector<int> votes = {1,1,2,2,3,3,1,1,1,};
