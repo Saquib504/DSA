@@ -1,6 +1,23 @@
 #include <iostream>
 using namespace std;
 
+
+//Brute Force Approach
+//Adding all elements in a set and checking for maximum XOR
+// int findMaximumXOR(vector<int>&nums) {
+//     int maxXOR = 0;
+//     if(nums.size() < 2) return 0;
+//     int n = nums.size();
+//     for(int i = 0; i < n; i++) {
+//         for(int j = i+1; j < n; j++) {
+//             maxXOR = max(maxXOR, (nums[i] ^ nums[j]));
+//         }
+//     }
+//     return maxXOR;
+// }
+
+
+//Optimal Approach using Trie
 struct Node {
     Node*links[2];
     bool containsKey(int bit) {
