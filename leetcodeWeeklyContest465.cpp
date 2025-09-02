@@ -2,7 +2,7 @@
 using namespace std;
 
 //contest exepreince was very good and challenging since it was my first giving a contest specifically a coding contest, 
-//so yeah i'l be improving myself in he upcoming contests and will try to improve my contest ratings for sure.
+//so yeah i'l be improving myself in he upcoming contests and will try to improve my contest ratings for sure.For sure
 
 //Q.1 Easy
 // vector<int> recoverOrder(vector<int>& order, vector<int>& friends) {
