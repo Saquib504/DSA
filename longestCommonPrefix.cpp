@@ -88,6 +88,7 @@ using namespace std;
 // }
 
 
+// this is more optimised solution than the previous one
 string longestCommonPrefix(vector<string>& strs) {
 if (strs.empty()) return "";
 
