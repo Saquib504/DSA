@@ -102,3 +102,5 @@ int main() {
     return 0;
 
 }
+
+//i fucked up pretty badly in this contest like for real, i got in trouble dude.
