@@ -69,3 +69,5 @@ int main() {
     cout << "The longest common subsequence is : " << findLCS(s1, s2) << endl;
     return 0;
 }
+
+//totally fucked up today, didn't solve any new problem
