@@ -70,4 +70,4 @@ int main() {
     return 0;
 }
 
-//totally fucked up today, didn't solve any new problem
+//totally fucked up today, didn't solve any new problem, like totally fucked up
