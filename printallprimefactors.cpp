@@ -1,30 +1,49 @@
 #include <iostream>
 using namespace std;
 
-vector<int> f(int n) {
-    vector<int> list;
+void f(int n, vector<int>&temp) {
 
     for(int i = 2; i <= sqrt(n); i++) {
         if(n%i == 0) {
-            list.push_back(i);
+            temp.push_back(i);
 
-            while(n%i == 0)n = n/i;
+            while(n%i == 0)
+                n = n/i;
+                temp.push_back(i);
         }
     }
-    if(n != 1)list.push_back(n);
+    if(n != 1)temp.push_back(n);
+}
 
-    return list;
+
+vector<vector<int>> returnList(vector<int>&nums) {
+    vector<vector<int>> arr;
+
+    for(auto num : nums) {
+        vector<int>temp;
+        f(num, temp);
+
+        arr.push_back(temp);
+    }
+
+    return arr;
 }
 
 
 int main() {
-    int n; cout << "Enter number : "; cin >> n;
+    vector<int> nums = {2,3,4,5,6,7,8,9};
 
-    vector<int> factors = f(n);
+    vector<vector<int>> factors = returnList(nums);
 
-    for(auto factor : factors) {
-        cout << factor << ", ";
-    }cout << endl;
+    cout << "\n[";
+    for(int i = 0; i < factors.size(); i++) {
+        cout << "[";
+        for(auto factor : factors[i]) {
+            cout << factor << ",";
+        }
+        cout << "]";
+    }
+    cout << "]\n\n";
 
     return 0;
 
