@@ -73,8 +73,10 @@ int main(){
         cout << "Nope, they are not part of same component\n";
     }
     ds.unionByRank(3,7);
-    if(ds.findPar(3) == ds.findPar(7)){
-        cout << "Both \3 and \7 are part of same component\n";
+    int u = 3;
+    int v = 7;
+    if(ds.findPar(u) == ds.findPar(v)){
+        cout << "Both " << u << " and " << v << " are part of same component\n";
     }
     else{
         cout << "Nope, they are not part of same component\n";
