@@ -67,18 +67,19 @@ int main(){
     ds.unionBySize(5,6);
     //are 3 and 7 part of same component
     if(ds.findPar(3) == ds.findPar(7)){
-        cout << "Both \3 and \7 are part of same component\n";
+        cout << "\nBoth \3 and \7 are part of same component\n";
     }
     else{
-        cout << "Nope, they are not part of same component\n";
+        cout << "\nNope, they are not part of same component\n";
     }
+    cout << "\nBut after finding their ultimate parent\n" << endl;
     ds.unionByRank(3,7);
     int u = 3;
     int v = 7;
     if(ds.findPar(u) == ds.findPar(v)){
-        cout << "Both " << u << " and " << v << " are part of same component\n";
+        cout << "\nBoth " << u << " and " << v << " are part of same component\n";
     }
     else{
-        cout << "Nope, they are not part of same component\n";
+        cout << "\nNope, they are not part of same component\n";
     }
 }
