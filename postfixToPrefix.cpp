@@ -19,7 +19,7 @@ string postfixToPrefix(string postfix) {
             string s2 = stk.top();  stk.pop();
 
             stk.push(c + s2 +s1);
-        }
+        } 
     }
 
     return stk.top();
