@@ -36,11 +36,41 @@ int findTotal(vector<int> &heights) {
     return total;
 }
 
+//OPtimized approach
+// TC -> O(N), SC -> O(1)
+
+int findTotalOptimized(vector<int>&heights) {
+    int n = heights.size();
+    int leftMax = 0, rightMax = 0, total = 0;
+    int l = 0, r = n-1;
+
+    while(l <= r) {
+        if(heights[l] <= heights[r]) {
+            if(leftMax > heights[l]) {
+                total += leftMax - heights[l];
+            }
+            else {
+                leftMax = heights[l];
+            }
+            l++;
+        }
+        else {
+            if(rightMax > heights[r]) {
+                total += rightMax - heights[r];
+            }
+            else {
+                rightMax = heights[r];
+            }
+            r--;
+        }
+    }
+    return total;
+}
 
 int main() {
     vector<int> heights = {4, 2, 0, 3, 2, 5};
 
-    cout << findTotal(heights) << endl;
+    cout << findTotalOptimized(heights) << endl;
 
     return 0;
 }
