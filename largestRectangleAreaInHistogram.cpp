@@ -25,6 +25,35 @@ int largeArea(vector<int>&histo) {
     return maxA;
 }
 
+//Stack based solution to find the largest rectangle area in histogram
+
+int largestRectangleArea(vector<int> &heights) {
+    int n = heights.size();
+    stack<int> stk;
+    int maxArea = INT_MIN;
+
+    for(int i = 0; i < n; i++) {
+    while(!stk.empty() && heights[stk.top()] > heights[i]) {
+        int element = stk.top(); stk.pop();
+        int nse = i;
+        int pse = stk.empty() ? -1 : stk.top();
+
+        maxArea = max(maxArea, heights[element]*(nse-pse-1));
+    }
+    stk.push(i);
+    }
+
+    while(!stk.empty()) {
+    int element = stk.top(); stk.pop();
+    int nse = n;
+    int pse = stk.empty() ? -1 : stk.top();
+
+    maxArea = max(maxArea, heights[element]*(nse-pse-1));
+    }
+
+    return maxArea;
+}
+
 int main() {
 
     int n; cout << "Enter n : ";cin >> n;
@@ -34,6 +63,7 @@ int main() {
     }
 
     cout << largeArea(histo) << endl;
+    cout << largestRectangleArea(histo) << endl;
 
     return 0;
 }
