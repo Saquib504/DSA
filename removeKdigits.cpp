@@ -22,8 +22,8 @@ string removeKdigits(string num, int k) {
 
 
 int main() {
-    string num = "1432219";
-    int k = 3;
+    string num = "1807736";
+    int k = 1;
 
     cout << removeKdigits(num, k) << endl;
 
