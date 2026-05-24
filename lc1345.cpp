@@ -10,7 +10,7 @@ The inner for loop scans from idx+2 to n every time a node is dequeued, potentia
 Fix — Erase from map after processing
 Pre-build a value → indices map. Once all same-value neighbors of an index are queued, erase that value from the map so no future node wastes time re-scanning them.
 
-Your loop logic
+My primitive loop logic
 for(int i = idx + 2; i < n; i++) {
     if(arr[i] == arr[idx] && !vis[i]) {
         q.push({i, steps+1});
