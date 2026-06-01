@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+//TC -> O(ElogV), SC -> O(V)
 int spanningTree(int V, vector<vector<int>> adj[]) {
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>>pq;
     int sum = 0;
@@ -34,6 +35,7 @@ int spanningTree(int V, vector<vector<int>> adj[]) {
 
 int main() {
     int V = 5;
+    // {u, v, wt}
     vector<vector<int>> edges = {{0, 1, 2}, {0, 2, 1}, {1, 2, 1}, {2, 3, 2}, {3, 4, 1}, {4, 2, 2}};
     vector<vector<int>> adj[V];
     for (auto it : edges) {
