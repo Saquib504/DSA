@@ -6,7 +6,8 @@ using namespace std;
 
 
 
-//Striever Approved Code
+//My code
+//TC -> O(NlogN + N*M), SC -> O(N)
 static bool comparator(vector<int>& a, vector<int>& b) {
     return a[2] > b[2];
 }
@@ -30,7 +31,8 @@ vector<int> JobScheduling(vector<vector<int>>& Jobs) {
 } 
 
 //Changed code
-ector<int> JobScheduling(vector<vector<int>>& Jobs) { 
+//TC -> O(NlogN + N*M), SC -> O(N)
+vector<int> JobScheduling(vector<vector<int>>& Jobs) { 
     int n = Jobs.size();
     int totalJobs = 0, maxProfit = 0;
 
