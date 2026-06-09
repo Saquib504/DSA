@@ -4,6 +4,9 @@
 using namespace std;
 
 
+// My Solution
+// Time Complexity: O(n log n), where n is the number of intervals (due to sorting)
+// Space Complexity: O(1), as we are using only a constant amount of extra space
 int eraseOverlapIntervals(vector<vector<int>>& intervals) {
     int n = intervals.size();
     int cnt = 0;
