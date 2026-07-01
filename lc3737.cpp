@@ -1,6 +1,10 @@
 #include <iostream>
 using namespace std;
 
+
+//My Solution
+//TC -> O(N^2)
+//SC -> O(1)
 int countMajoritySubarrays(vector<int>& nums, int target) {
     int n = nums.size();
     int cnt = 0;
@@ -17,6 +21,26 @@ int countMajoritySubarrays(vector<int>& nums, int target) {
     return cnt;
 }
 
+
+//Better Solution
+//TC -> O(N)
+//SC -> O(N)
+static int countMajoritySubarrays(vector<int>& nums, int target) {
+    bias=nums.size()+1;
+    int balance=bias;
+    memset(cntB , 0, (2*bias)*sizeof(int));
+    cntB[balance]=1;
+    int ans=0, sum=0;
+    
+    for (int x : nums) {
+        if (x==target) sum+=cntB[balance++];
+        else sum-=cntB[--balance];
+        
+        cntB[balance]++;
+        ans+=sum;
+    }
+    return ans;
+}
 
 int main() {
     int n; cout << "Enter number of elements: "; cin >> n;
