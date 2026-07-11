@@ -82,6 +82,7 @@ Node* insertIntoBST(Node* root, int val) {
             }
             else {
                 curr->right = new Node(val);
+                break;
             }
         }
     }
