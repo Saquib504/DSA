@@ -1,0 +1,188 @@
+#include <iostream>
+#include <sstream>
+#include <vector>
+#include <queue>
+#include <string>
+#include <cctype>
+using namespace std;
+
+struct Node {
+    int data;
+    Node* left;
+    Node* right;
+    Node(int val) : data(val), left(nullptr), right(nullptr) {}
+};
+
+// Inserts a node by following a path of L/R moves measured from the ROOT.
+// The path describes the moves from the root to the NEW node itself.
+// Example: value=2, path={L,L,R,L} means: from root go Left, Left, Right,
+// and the new node becomes the LEFT child of the node you land on.
+// All moves except the last one must lead to an already-existing node.
+bool insertNode(Node* root, int value, const vector<char>& path) {
+    if (path.empty()) {
+        cout << "Error: empty path given.\n";
+        return false;
+    }
+
+    Node* current = root;
+    // Walk to the parent of the new node (every move except the last one)
+    for (size_t i = 0; i + 1 < path.size(); i++) {
+        current = (path[i] == 'L') ? current->left : current->right;
+        if (current == nullptr) {
+            cout << "Error: path is invalid, an intermediate node is missing.\n";
+            return false;
+        }
+    }
+
+    char lastMove = path.back();
+    Node* newNode = new Node(value);
+
+    if (lastMove == 'L') {
+        if (current->left != nullptr) {
+            cout << "Warning: left child already existed, it has been replaced.\n";
+            delete current->left;
+        }
+        current->left = newNode;
+    } else {
+        if (current->right != nullptr) {
+            cout << "Warning: right child already existed, it has been replaced.\n";
+            delete current->right;
+        }
+        current->right = newNode;
+    }
+    return true;
+}
+
+// Prints the tree rotated 90 degrees (root on the left) so the shape is easy to read.
+void printTree(Node* root, int depth = 0) {
+    if (root == nullptr) return;
+    printTree(root->right, depth + 1);
+    cout << string(depth * 6, ' ') << root->data << "\n";
+    printTree(root->left, depth + 1);
+}
+
+
+Node* findLastRight(Node* root) {
+    if(!root) return NULL;
+    while(root->right) {
+        root = root->right;
+    }
+    return root;
+}
+
+Node* helper(Node* root) {
+    if(root->left == NULL) {
+        return root->right;
+    } else if(root->right == NULL) {
+        return root->left;
+    }
+
+    Node* rightChild = root->right;
+    Node* lastRight = findLastRight(root->left);
+    lastRight->right = rightChild;
+    return root->left;
+}
+
+Node* deleteNode(Node* root, int key) {
+    if(!root) return NULL;
+    if(root->data == key) {
+        return helper(root);
+    }
+
+    Node* temp = root;
+
+    while(temp) {
+        if(temp->data > key) {
+            if(temp->left && temp->left->data == key) {
+                temp->left = helper(temp->left);
+                break;
+            } else {
+                temp = temp->left;
+            }
+        }
+        else {
+            if(temp->right && temp->right->data == key) {
+                temp->right = helper(temp->right);
+                break;
+            } else {
+                temp = temp->right;
+            }
+        }
+    }
+    return root;
+}
+
+
+
+int main() {
+    int n;
+    cout << "Enter the total number of nodes in the tree: ";
+    cin >> n;
+
+    if (n <= 0) {
+        cout << "Number of nodes must be at least 1.\n";
+        return 0;
+    }
+
+    int rootVal;
+    cout << "Enter the value of the ROOT node: ";
+    cin >> rootVal;
+    Node* root = new Node(rootVal);
+
+    cin.ignore(); // flush the leftover newline so getline works cleanly
+
+    int remaining = n - 1;
+    cout << "\nNow enter the remaining " << remaining << " node(s).\n";
+    cout << "Format: <value> <move1> <move2> ... <moveK>\n";
+    cout << "Each move is L (left) or R (right), measured from the ROOT.\n";
+    cout << "Example: 2 L L R L  -> places value 2 by going Left, Left, Right, Left from the root.\n\n";
+
+    for (int i = 0; i < remaining; i++) {
+        cout << "Node " << (i + 2) << "/" << n << " -> ";
+        string line;
+        getline(cin, line);
+
+        stringstream ss(line);
+        int value;
+        if (!(ss >> value)) {
+            cout << "Could not read a value, please try again.\n";
+            i--;
+            continue;
+        }
+
+        vector<char> path;
+        string token;
+        bool badToken = false;
+        while (ss >> token) {
+            char move = toupper(token[0]);
+            if (move != 'L' && move != 'R') {
+                cout << "Invalid move '" << token << "', please re-enter this node.\n";
+                badToken = true;
+                break;
+            }
+            path.push_back(move);
+        }
+
+        if (badToken || path.empty()) {
+            i--; // retry this same node
+            continue;
+        }
+
+        if (!insertNode(root, value, path)) {
+            i--; // retry this same node since insertion failed
+        }
+    }
+
+    cout << "\n--- Tree built successfully! ---\n";
+    cout << "\nSideways view (root on the left, top branch = right child):\n";
+    printTree(root);
+
+    int key; cout << "Enter the key element to be deleted from the tree: "; cin >> key;
+
+    root = deleteNode(root, key);
+
+    cout << "\nSideways view (root on the left, top branch = right child):\n";
+    printTree(root);
+
+    return 0;
+}
