@@ -24,7 +24,8 @@ int main() {
     while(true) {
         int n;
         cin >> n;
-        if(n == -1)break;
+        if(n == -1)br5
+        eak;
         else arr.push_back(n);
     }
 
