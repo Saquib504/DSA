@@ -5,28 +5,25 @@ using namespace std;
 
 
 vector<string> generateParenthesis(int n) {
-    if(n-- == 1) return {"()"};
+    if (n-- == 1) return {"()"};
 
-    vector<string> result;
-
-    auto dfs = [&](auto&self, int o, int c, string s) -> void {
-        if(o == 0 && c == 0) {
-            result.push_back(s + ")");
+    vector<string> res;
+    auto dfs = [&](auto& self, int O, int C, string s) -> void {
+        if (O == 0 && C == 0) {
+            res.push_back(s + ")");
             return;
         }
 
-        if(o > 0) {
-            self(self, o-1, c, s + "(");
-        }
+        if (O > 0)
+            self(self, O - 1, C, s + "(");
 
-        if(c > 0) {
-            self(self, o, c-1, s + ")");
-        }
+        if (C >= O)
+            self(self, O, C - 1, s + ")");
     };
 
     dfs(dfs, n, n, "(");
 
-    return result;
+    return res;
 }
 
 
