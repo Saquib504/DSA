@@ -10,7 +10,7 @@ vector<string> generateParenthesis(int n) {
     vector<string> result;
 
     auto dfs = [&](auto&self, int o, int c, string s) -> void {
-        if(o == 0 || c == 0) {
+        if(o == 0 && c == 0) {
             result.push_back(s + ")");
             return;
         }
